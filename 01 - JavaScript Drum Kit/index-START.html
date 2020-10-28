@@ -59,6 +59,35 @@
 
 <script>
 
+
+function playSound(e) 
+  {
+    // e ="event" so to speak 
+    const audio = document.querySelector(`audio[data-key = "${e.keyCode}"]`) //creates an audio var and queries the page for the key being pressed (data-key in the HTML) to match it to audio/the key needing to be pressed on the page
+    const key = document.querySelector(`.key[data-key = "${e.keyCode}"]`)
+    if (!audio) return; //stops the function from running altogether (if there is no audio, return into the function)
+    audio.currentTime = 0; // rewind to start of sound clip immediately on key up
+    audio.play(); //plays the audio associated with the data-key in the HTML
+    key.classList.add('playing');
+    //Also has instead of .add:
+      //.remove
+      //.toggle
+  
+  };
+
+function removeTransition(e){
+  if (e.propertyName !== 'transform' ) return; //skip it if it's not a transform
+  //this function says "if event.propertyName (in the css file) is NOT transform, return back to main code."
+  this.classList.remove('playing');
+  //this removes the "playing" class from being active, so the div resets to the default state.
+}
+
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition)); // This is saying to create a var called keys, then select all .keys. Then for each key, add an event listener that is called "transitionend", and then removes the transition (the glowy border) from the icons on the screen.
+
+  window.addEventListener('keydown', playSound);
+  //.addEventListener looks for an action to be performed on the page which in this case is 'keydown'
+
 </script>
 
 
