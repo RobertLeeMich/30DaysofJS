@@ -62,12 +62,35 @@
       background: black;
       position: absolute;
       top: 50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 
+      0.58, 1);
     }
 
   </style>
 
   <script>
+const secondHand = document.querySelector('.second-hand'); //this is telling JS to select the second hand and label it as "secondHand" for reference in JS
+const minuteHand = document.querySelector('.min-hand');//this is telling JS to select the second hand and label it as "secondHand" for reference in JS
+const hourHand = document.querySelector('.hour-hand');//this is telling JS to select the second hand and label it as "secondHand" for reference in JS
+function setDate () { //creating function of "setDate"
+  const now = new Date(); //creates a var with the Date() function as its value
+  const seconds = now.getSeconds(); // creates variable that references the time right now and references a "getSeconds" function which is part of javascript for the current seconds of time
+  const secondsDegrees = ((seconds / 60) * 360) + 90; //creates a var that references the current seconds, dividing it by 60 bc 60 seconds in a minute, multiplying it by 360 bc 360 degrees in a circle, and adding 90 to it because we had to originally move the hands 90 degrees to the top of the "default" state of the clock at 12-o-clock
+  secondHand.style.transform = `rotate(${secondsDegrees}deg)`; // this makes the div rotate by the secondsDegrees variable. QUESTION: EXPLAIN THIS CODE BIGGZ?
 
+  const minutes = now.getMinutes(); //creates variable that references the time right now and references a "getMinutes" function which is part of javascript for the current minutes of time
+  const minutesDegrees = ((minutes / 60) * 360) + 90;//creates a var that references the current seconds, dividing it by 60 bc 60 minutes in an hour, multiplying it by 360 bc 360 degrees in a circle, and adding 90 to it because we had to originally move the hands 90 degrees to the top of the "default" state of the clock at 12-o-clock
+  minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;// this makes the div rotate by the minutesDegrees variable. QUESTION: EXPLAIN THIS CODE BIGGZ?
+
+  const hours = now.getHours();//creates variable that references the time right now and references a "getHours" function which is part of javascript for the current minutes of time
+  const hoursDegrees = ((hours / 12) * 360) + 90; //creates a var that references the current seconds, dividing it by 12 bc 12 hours in half a day, multiplying it by 360 bc 360 degrees in a circle, and adding 90 to it because we had to originally move the hands 90 degrees to the top of the "default" state of the clock at 12-o-clock
+  hourHand.style.transform = `rotate(${hoursDegrees}deg)`;// this makes the div rotate by the hoursDegrees variable. QUESTION: EXPLAIN THIS CODE BIGGZ?
+}
+
+setInterval(setDate, 1000);
 
   </script>
 </body>
