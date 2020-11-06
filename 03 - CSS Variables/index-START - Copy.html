@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scoped CSS Variables and JS</title>
+</head>
+<body>
+  <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+
+  <div class="controls">
+    <label for="spacing">Spacing:</label>
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+    <label for="blur">Blur:</label>
+    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+    <label for="base">Base Color</label>
+    <input id="base" type="color" name="base" value="#ffc600">
+  </div>
+
+  <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+
+  <style>
+    :root { 
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    } /* root selector selects everything in the HTML, the whole page. -- is how you define "variables" in CSS to work with in JS later on. The names here are referencing stuff in the HTML above, specifically "names". */
+
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
+    /* Here we are manipulating the img CSS tag using the variables previously spoken about before. UNCLEAR WHY BLUR IS BLUR(VAR(--BLUR)) AND NOT LIKE THE OTHER ONES THOUGH?  */ 
+    /* Biggz explained that the CSS property 'filter' has multiple keywords and you have to specify  'blur' here for it to work, then call the --blur var from the CSS var declaration */
+
+    .hl {
+      color: var(--base);
+    }
+      /* Same thing here, we are using var(--[name] to select a CSS variable and manipulate the .hl (highlight) CSS value ) */
+
+    /*
+      misc styles, nothing to do with CSS variables
+    */
+
+    body {
+      text-align: center;
+      background: #193549;
+      color: white;
+      font-family: 'helvetica neue', sans-serif;
+      font-weight: 100;
+      font-size: 50px;
+    }
+
+    .controls {
+      margin-bottom: 50px;
+    }
+
+    input {
+      width: 100px;
+    }
+  </style>
+
+  <script>
+    const inputs = document.querySelectorAll('.controls input'); //this creates a var called inputs and selects all the queries on the page under the div 'controls' above in the HTML. I AM UNSURE WHAT INPUT IS DOING HERE?
+    //L2READ HTML, input is the name of a separate item inside the .controls div. So it's just selecting the .controls div and then selecting the input stuff inside of that div
+    //EBIGGZ SAYS: for css selectors, if theres no period in front of the word, it means its referencing an html element type
+
+    function handleUpdate () {
+      const suffix = this.dataset.sizing || '';
+      //console.log(this)
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+      
+
+          //EXPLAINATION: this.name references the name= in the HTML, and the this.value references the value=10px in the HTML as well, and then adding the suffix (px) to the end to let the JS know "hey this is changing by 10 px"
+
+        //This creates a function called handleUpdate() which creates a var called suffix, then references this.dataset.sizing, which is in the HTML data-sizing, OR a blank value. Remember you can set anything as a "reference" in HTML by just having data-xxxx and referencing the xxxx in the code.
+
+        //Then we set a property using document.documentElement.style.setProperty that references this.name using a template literal, this.value and adds the suffix to the end. (NOT QUITE SURE WHAT THIS IS ACTUALLY DOING.)
+
+    } 
+
+    //handleUpdate => console.log(this.value); This doesn't work as an arrow function?
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+
+    //This adds event listeners on the page for changes to the sliders and color picker, and references the handleUpdate function. The event listeners check for any changes and mouse movements.
+
+    // EBIGGZ SAYS: every time the mouse moves, it loops through all three inputs (inputs.forEach) and updates the css based on the current values set
+
+
+  </script>
+
+</body>
+</html>
