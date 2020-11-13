@@ -52,24 +52,61 @@
       }
     }
     */
-    let inventorBirths = inventors.filter(
-      inventor => inventor.year >= 1500 && inventor.year <= 1600);
-    console.log(inventorBirths);
+    let inventorBirths = inventors.filter( //created a variable called inventorBirths and assigned it to the inventors array and put the .filter function on it to filter what we need from the array
+      inventor => inventor.year >= 1500 && inventor.year <= 1600); // this fat arrow function says to take a singular inventor and check if their year value is greater than 1500 and less than 1600, and if true, adds it to the "inventorBirths" var which is an array because .filter makes it an array
+    console.log(inventorBirths); //logs to console
     
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
 
+ let inventorNames = inventors.map(inventor => { //creates var "inventorNames" and assigns inventors.map to it, thus making inventorNames an array and begins the .map function
+  return inventor.first + " " + inventor.last;
+}) //this returns inventor.first and inventor.last to inventor.names. This is directly referencing the inventors array since we are calling .map on inventors, but we are assigning "inventor" as a "singular" argument to use to return items back to inventorNames for the array, by calling inventor.first (which is "first" in the inventors array) and inventor.last (which is "last" in the inventors array).
+
+console.log(inventorNames); 
+//logs inventorNames to console
+
+//ebiggz says: map loops through every item in the array and calls the function you provide it. It replaces the item at the current index with whatever new value your function returns. so in that case, it loops through the inventor array and builds a new array with first + last strings in place of the inventors // again, its "mapping" the item in the array to some other value. Hence the name.
+
+
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+
+//created an inventorsSorted variable which gets an array assigned to it via .sort  and we declare the arguments of sort to be the comparison values inventorA and inventorB (top line of below code)
+let inventorsSorted = inventors.sort((inventorA, inventorB) => inventorA.year - inventorB.year); 
+// then we fat arrow function inventorA and minus that from inventorB to get the correct order of inventors in the inventorsSorted array. (bottom line of above code)
+
+console.log(inventorsSorted); 
+//console logging inventorsSorted
+
+
+
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
 
+    //let inventorsTotal = "";
+    let reducer = (accumulator, inventor) => accumulator + (inventor.passed - inventor.year)
+
+    console.log(inventors.reduce(reducer, 0))
+
     // 5. Sort the inventors by years lived
+
+    let inventorsByAge = inventors.sort((inventorA, inventorB) => {
+    let aAge = inventorA.passed - inventorA.year;
+    let bAge = inventorB.passed - inventorB.year;
+    return aAge - bAge;
+});
+
+  console.log(inventorsByAge)
+
+//EBIGGZ SAYS: if that returns 0, that means a and b are equal. of its greater than 0, it means a is greater than b, if its less than 0 (negative), b is greater than a
+
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+  
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
