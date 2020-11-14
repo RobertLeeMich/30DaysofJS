@@ -106,14 +106,53 @@ console.log(inventorsSorted);
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+  //const category = document.querySelector('.mw-category');
+  //const links = Array.from(category.querySelectorAll('a'));
+  //const de = links.map(link => link.textContent).filter(streetName => streetName.includes('de'));
+  //this creates a var called category, and queries the .mw-category div for the information inside the div
   
+  //this creates a links variable that uses Array.from to select all the anchor links on the page ('a') and converts the list (since everything that gets selected is a NodeList, we have to turn the NodeList into an array using Array.from) and that selects all of the elements in 'category' which is all of the links, and turns it into an array instead of a NodeList so we can use array functions.
+
+  //ASK BIGGZ: would category.querySelectorAll('a')); be mw-category or how does this work? I generally get it but still.
+  
+    //This is making a variable called 'de' and taking the links array we made earlier and mapping over each item in the array which is the links, and taking the text content of the links, and then filtering the 'streetName' out to see if the current array item includes the characters (word or characters?) 'de' and returns them as an array as 'de' when 'de' is called in the console.
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+  const nameSort = people.sort();
+
+  console.log(nameSort);
+
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    const wordCounts = data.reduce(function(obj, word){
+      if (!obj[word]) {
+        //if the word doesn't yet exist as a property of the accumulator object,
+        //add it as a property and set its count to 1
+        //Setari: We create a variable to hold the .reduce information from reducing the data array, and introduce declare obj and word as arguments to use in the reduce function args.
+        // in the args, obj is the accumulator, and word is the current value that reduce is looking at (?).
+        //the if says if the object is NOT a property of the accumulator object (meaning it's not in the array obj is holding which on the first pass is blank) (?) to add the 'word' it's looking at and set the count to 1 as seen below
+        obj[word] = 1;
+      } else {
+        //word exists, increment its count
+        //Setari: Here we have an else that says else, if the object has that word inside of the current "fake" array it's holding, to add 1 to the value of the word to "count" it.
+        obj[word]++
+      }
+      return obj; // return the modified object to be used as an accumulator in the next iteration
+    }, {}); //initialize the accumulator as an empty object
+
+console.log(wordCounts); //console.logs the output of wordCounts, which ends up being:
+/* 
+bike: 2
+car: 5
+truck: 3
+van: 2
+walk: 2 
+*/
 
   </script>
 </body>
