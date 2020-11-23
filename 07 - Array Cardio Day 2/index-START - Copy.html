@@ -49,7 +49,7 @@
 
     const aboveNineteen = people.every(function(person) {
       return new Date().getFullYear() - person.year >= 19;
-    })
+    });
     //declare a var named aboveNineteen and called .every on the people array with an arg of person since we are checking every person in the array. Then we return the difference between the current date/year and comparing that to see if the number is equal to or greater than 19.
 
     //sidenote: the person arg is being referenced in person.year in the return.
@@ -60,11 +60,27 @@
     // Find is like filter, but instead returns just the one you are looking for
     // find the comment with the ID of 823423
 
-    const findID = comments.find(function ())
+    const findId = comments.find(function (element) {
+      return element.id === 823423;
+    });
+
+    //created var to hold the function using .find on the comments array. Returned the specific comment using element.id matching the id in the object array.
+
+    console.log(findId); //console.logs the specific comment with the ID as the arg.
 
     // Array.prototype.findIndex()
     // Find the comment with this ID
     // delete the comment with the ID of 823423
+
+    const seeIndex = comments.findIndex(function (element){
+      return element.id === 823423;
+    })
+
+    console.log(seeIndex);
+
+    comments.splice(1, 1);
+    console.log(comments);
+
 
   </script>
 </body>
