@@ -28,7 +28,7 @@
     // Array.prototype.some() // is at least one person 19 or older?
     
     let isAdult = people.some(function (person) {
-      return 2020 - person.year >= 19;
+      return new Date().getFullYear() - person.year >= 19;
       //const age = 2020 - person.year;
       //return age >= 19;
     });
@@ -48,7 +48,7 @@
     // Array.prototype.every() // is everyone 19 or older?
 
     const aboveNineteen = people.every(function(person) {
-      return 2020 - person.year >= 19;
+      return new Date().getFullYear() - person.year >= 19;
     })
     //declare a var named aboveNineteen and called .every on the people array with an arg of person since we are checking every person in the array. Then we return the difference between the current date/year and comparing that to see if the number is equal to or greater than 19.
 
@@ -59,6 +59,8 @@
     // Array.prototype.find()
     // Find is like filter, but instead returns just the one you are looking for
     // find the comment with the ID of 823423
+
+    const findID = comments.find(function ())
 
     // Array.prototype.findIndex()
     // Find the comment with this ID
