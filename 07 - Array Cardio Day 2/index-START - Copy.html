@@ -10,10 +10,10 @@
     // ## Array Cardio Day 2
 
     const people = [
-      { name: 'Wes', year: 1988 },
-      { name: 'Kait', year: 1986 },
+      { name: 'Wes', year: 1970 },
+      { name: 'Kait', year: 1970 },
       { name: 'Irv', year: 1970 },
-      { name: 'Lux', year: 2015 }
+      { name: 'Lux', year: 1970 }
     ];
 
     const comments = [
@@ -28,17 +28,33 @@
     // Array.prototype.some() // is at least one person 19 or older?
     
     let isAdult = people.some(function (person) {
-      return (people.year >= 2020 - people.year) >= 19;
+      return 2020 - person.year >= 19;
+      //const age = 2020 - person.year;
+      //return age >= 19;
     });
+    //Here we declare an isAdult variable and use .some on the people array to see if a person's year value is equal to or over 19. 
 
-    console.log(isAdult);
+    console.log(isAdult); //console.logs the result of the return (true or false)
 
-    
+   //ebiggz says: 
+   //const atLeastOneAdult = people.some(function(person) {
+   //const age = 2020 - people.year;
+   //return age >= 19;
+   //});
 
     
     
 
     // Array.prototype.every() // is everyone 19 or older?
+
+    const aboveNineteen = people.every(function(person) {
+      return 2020 - person.year >= 19;
+    })
+    //declare a var named aboveNineteen and called .every on the people array with an arg of person since we are checking every person in the array. Then we return the difference between the current date/year and comparing that to see if the number is equal to or greater than 19.
+
+    //sidenote: the person arg is being referenced in person.year in the return.
+
+    console.log(aboveNineteen) //console.logs the result of the return (true or false)
 
     // Array.prototype.find()
     // Find is like filter, but instead returns just the one you are looking for
