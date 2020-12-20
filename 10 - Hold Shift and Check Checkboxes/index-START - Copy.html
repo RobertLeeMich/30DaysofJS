@@ -97,26 +97,35 @@
 
 <script>
 
-let lastChecked; //creates a lastChecked var for use
+const checkboxes = document.querySelectorAll('.inbox input[type = "checkbox"]');
 
-function handleCheck(e) {
-  let inBetween = false;
+let lastChecked; //creates a lastChecked var for use, let here lets lastChecked be reassigned constantly
 
-  if (e.shiftKey && this.checked) {
+function handleCheck(e) { //create a function called handleCheck, check if they had the shiftkey down
+//AND check that they are checking it, not unchecking
+  let inBetween = false; //create a var called inBetween and set it to false because when the first checkbox gets checked, this variable will hold the information of which checkbox first got checked, and the last one that gets checked later. It's basically checking all of the checkboxes inbetween the start and end.
+
+  if (e.shiftKey && this.checked) { //if the shiftkey is down (e.shiftkey) & they are checking the box...
+
     //loop over every single checkbox
     checkboxes.forEach(checkbox => {
       if (checkbox === this || checkbox === lastChecked) {
         inBetween =! inBetween;
       }
+      //forEach loop making JS "look" at all of the checkboxes and see what boxes are between the start and end boxes. if statement == if checkbox is equal to this or if this checkbox is equal to the currently checked one, inbetween is false
+      console.log("Starting to check them inbetween!") //console log to say in console that it's starting to check which ones are in between whatever checkboxes.
 
       if (inBetween) {
         checkbox.checked = true;
-      }
+      } // if inBetween has a value of checkbox.checked = true, check the boxes between the start box and the end box
     });
   }
 
   lastChecked = this;
 }
+
+checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+
 
 </script>
 </body>
