@@ -35,7 +35,9 @@ function skip() {
 }
 
 function handleRangeUpdate() {
-    console.log(this.value);
+    video[this.name] = this.value; //'this' here is the slider itself, and it is being updated to a certain value within the video player to control speed and/or volume (on separate sliders)
+    console.log(this.name); //logs the name of the value (or element? not sure) we're referencing
+    console.log(this.value); // logs the value/number of where the slider is (the 'change', handleRangeUpdate or the mousemovement )
 }
 
 //hook up event listeners
