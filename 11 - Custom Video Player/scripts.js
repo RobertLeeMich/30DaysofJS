@@ -8,6 +8,7 @@ const skipButtons = player.querySelectorAll('[data-skip]');
 //calling ('[data-skip]') here encapsulates both data-skips in the HTML so they are both selected when the .querySelectorAll runs to select them, i.e. when the user clicks them.
 const playerSlider = player.querySelector('.player__slider'); // y u 2 underscores?
 const ranges = player.querySelectorAll('.player__slider');
+//added myself
 const fullbtn = player.querySelectorAll('.fullscreen');
 
 //build out functions
@@ -65,7 +66,8 @@ function scrub(e) { //scrub function creation for being able to jump around the 
 function toggleFull() {
     if (video.requestFullscreen){
         video.requestFullscreen();
-    }  //this function did not work as advertised lol
+    } 
+}//this function did not work as advertised lol
    
     /* } else if (video.webkitrequestFullScreen){
         video.webkitrequestFullScreen();
