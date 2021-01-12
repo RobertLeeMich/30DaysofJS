@@ -55,6 +55,17 @@ function scrub(e) { //scrub function creation for being able to jump around the 
 }
 
 //did this myself
+
+function openFullscreen() {
+    if (fullbtn.requestFullscreen) {
+      fullbtn.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+      fullbtn.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+      fullbtn.msRequestFullscreen();
+    }
+  }
+
 /* function toggleFull(){
     if (document.fullscreenElement){
         document.exitFullscreen();
@@ -63,10 +74,10 @@ function scrub(e) { //scrub function creation for being able to jump around the 
     }
 } */ //this function does not work either?
 
-function toggleFull() {
+/* function toggleFull() {
     if (video.requestFullscreen){
         video.requestFullscreen();
-    } 
+    } */ 
 }//this function did not work as advertised lol
    
     /* } else if (video.webkitrequestFullScreen){

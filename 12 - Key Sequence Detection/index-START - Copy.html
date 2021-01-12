@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+</head>
+<body>
+<script>
+const pressed = []; //creates an array for the keys pressed to be pushed to for validation
+const secretCode = 'setari'; //if the keys pressed in the var pressed array match the secret code, stuff happens
+
+window.addEventListener('keyup', (e) => {
+  console.log(e.key);
+  pressed.push(e.key); //pushes the key being pressed into the pressed array
+  pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length); //splices the array from the last item in the array, and pushes the first item in the array out to make room for the incoming last item in the array. 
+  if (pressed.join('').includes(secretCode)){
+    console.log("yew did it") //if the joined strings together include the item assigned to secretCode, which the value is "setari", then console.log words to the console and trigger cornify_add(); on the page which adds stuff to the page.
+    cornify_add();
+  }
+  console.log(pressed); //prints the pressed array to console
+}) //eventlistener for keypresses in the website window when selected
+
+</script>
+</body>
+</html>
