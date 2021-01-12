@@ -9,7 +9,7 @@ const skipButtons = player.querySelectorAll('[data-skip]');
 const playerSlider = player.querySelector('.player__slider'); // y u 2 underscores?
 const ranges = player.querySelectorAll('.player__slider');
 //added myself
-const fullbtn = player.querySelectorAll('.fullscreen');
+const fullbtn = player.querySelector('.fullscreen');
 
 //build out functions
 function togglePlay (){
@@ -55,37 +55,11 @@ function scrub(e) { //scrub function creation for being able to jump around the 
 }
 
 //did this myself
-
-function openFullscreen() {
-    if (fullbtn.requestFullscreen) {
-      fullbtn.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
-      fullbtn.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE11 */
-      fullbtn.msRequestFullscreen();
-    }
-  }
-
-/* function toggleFull(){
-    if (document.fullscreenElement){
-        document.exitFullscreen();
-    } else {
-        video.requestFullscreen();
-    }
-} */ //this function does not work either?
-
-/* function toggleFull() {
+ function toggleFull() {
     if (video.requestFullscreen){
         video.requestFullscreen();
-    } */ 
-}//this function did not work as advertised lol
-   
-    /* } else if (video.webkitrequestFullScreen){
-        video.webkitrequestFullScreen();
-    } else if (video.mozrequestFullScreen){
-        video.mozrequestFullScreen();
-    } */
-
+    } 
+}
 //hook up event listeners
 
 video.addEventListener('click', togglePlay);//toggles playing the video when the video itself is clicked
